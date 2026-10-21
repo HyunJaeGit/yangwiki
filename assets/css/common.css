@@ -318,3 +318,80 @@ button:active { transform:translateY(1px); }
  .step-list a:hover .link-arrow { transform:none !important; }
 }
 
+/* 공통 헤더 인쇄 아이콘과 개발 정보 푸터 */
+.header-top { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.header-top .brand { margin-right:auto; }
+.header-top .print-button {
+ display:grid;
+ width:44px;
+ min-width:44px;
+ height:44px;
+ min-height:44px;
+ place-items:center;
+ padding:0;
+ border-radius:6px;
+ background:#fff;
+}
+.print-button svg { width:21px; height:21px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.8; }
+.site-footer .container { display:grid; gap:4px; }
+.site-footer p { margin:0; }
+.site-footer p:first-child { color:var(--ink); }
+.site-footer p:last-child { overflow-wrap:anywhere; }
+@media(max-width:420px) {
+ .header-top .print-button { width:44px; }
+}
+
+/* 가독성 중심의 타이포그래피와 절제된 서비스 UI 색상 */
+:root {
+ --navy:#202b3a;
+ --ink:#24282d;
+ --muted:#626b75;
+ --line:#e2e6ea;
+ --light:#f6f7f8;
+ --blue:#eef2f5;
+ --orange:#92510a;
+ --kakao:#f5df00;
+}
+body {
+ background:#fff;
+ color:var(--ink);
+ font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+ font-size:16px;
+ line-height:1.72;
+ letter-spacing:-.012em;
+}
+h1,h2,h3,th,button,.brand,.main-nav a { letter-spacing:-.025em; }
+h1,h2,h3 { color:var(--navy); }
+h1 { font-weight:750; letter-spacing:-.04em; }
+h2 { font-size:23px; font-weight:700; }
+h3,.manual-section h3 { font-weight:700; }
+p,li,td { font-weight:400; }
+a { color:#315b80; }
+.brand { color:var(--navy); font-weight:750; }
+.main-nav a[aria-current] { border-bottom-color:var(--kakao); }
+.page-heading h1 { letter-spacing:-.04em; }
+.eyebrow,.step-number,.breadcrumb,.source-note { color:var(--muted); }
+.area-nav a { border-left-color:var(--kakao); }
+.step-number { background:#f2f4f6; color:#4d5863; }
+thead th { color:var(--navy); }
+button[type="submit"] { background:var(--kakao); border-color:#e4d000; }
+@media (hover:hover) and (pointer:fine) {
+ .main-nav a:hover { border-bottom-color:#d4c000; }
+ .area-nav a:hover,
+ .document-list a:hover,
+ .step-list a:hover { border-color:#ddd69a; background:#fffdf1; }
+ button[type="submit"]:hover { background:#ebd900; }
+}
+@media(max-width:720px) {
+ body { font-size:15px; line-height:1.75; }
+ h2 { font-size:21px; }
+}
+@keyframes nav-page-enter { from { opacity:0; transform:perspective(1400px) rotateY(2deg) translateX(20px); } to { opacity:1; transform:perspective(1400px) rotateY(0) translateX(0); } }
+@keyframes nav-page-leave { to { opacity:0; transform:perspective(1400px) rotateY(-2deg) translateX(-20px); } }
+body.nav-page-entering { animation:nav-page-enter 220ms cubic-bezier(.2,.7,.3,1) both; }
+body.nav-page-leaving { animation:nav-page-leave 160ms cubic-bezier(.4,0,1,1) both; }
+@media(prefers-reduced-motion:reduce) {
+ body.nav-page-entering,
+ body.nav-page-leaving { animation:none; }
+}
+
