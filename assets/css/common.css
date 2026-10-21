@@ -384,33 +384,6 @@ button:active { transform:translateY(1px); }
  .page-navigation .next-link::after { transition:none; }
 }
 
-/* 문서의 표·절차를 보조하는 본문 삽화 */
-.supporting-illustration {
- margin:20px 0 26px;
- padding:14px 0;
- border-block:1px solid var(--line);
- text-align:center;
-}
-.supporting-illustration img {
- display:block;
- width:min(100%,760px);
- max-height:340px;
- height:auto;
- margin-inline:auto;
- object-fit:contain;
-}
-.supporting-illustration figcaption {
- margin-top:8px;
- color:var(--muted);
- font-size:13px;
- line-height:1.6;
-}
-@media(max-width:720px) {
- .supporting-illustration { margin-block:16px 20px; padding-block:10px; }
- .supporting-illustration img { max-height:220px; }
- .supporting-illustration figcaption { font-size:12px; }
-}
-
 /* 가독성 중심의 타이포그래피와 절제된 서비스 UI 색상 */
 :root {
  --navy:#202b3a;
