@@ -1,10 +1,10 @@
-# 디벗 양품화 업무 안내
+# 디벗 양품화 메뉴얼
 
 콜센터 상담 참고용 정적 매뉴얼입니다. 순수 HTML·CSS·JavaScript로 구성되어 별도 패키지나 빌드 도구 없이 로컬에서 열거나 GitHub Pages에 배포할 수 있습니다.
 
 ## 사이트 열기
 
-[디벗 양품화 업무 안내 열기](https://hyunjaegit.github.io/yangwiki/)
+[디벗 양품화 메뉴얼 열기](https://hyunjaegit.github.io/yangwiki/)
 
 위 주소는 현재 GitHub 저장소(origin)의 기본 Pages 주소입니다. GitHub Actions 배포가 한 번 성공한 뒤 사용할 수 있습니다.
 
