@@ -135,6 +135,8 @@ button:focus-visible,input:focus-visible,summary:focus-visible { outline:3px sol
 .main-nav { border-top:1px solid var(--line); gap:0 24px; }
 .main-nav a { padding:10px 0 8px; }
 .main-nav a[aria-current] { color:var(--navy); }
+.main-nav .nav-secondary { margin-left:auto; color:var(--muted); font-size:13px; }
+.main-nav .nav-secondary[aria-current] { color:var(--navy); }
 .breadcrumb { padding-bottom:12px; border-bottom:1px solid var(--line); }
 .page-heading { padding-bottom:18px; border-bottom:2px solid var(--navy); }
 .content-section { padding-top:20px; border-top:1px solid var(--line); }
@@ -341,6 +343,74 @@ button:active { transform:translateY(1px); }
  .header-top .print-button { width:44px; }
 }
 
+/* 링크 방향 표시는 hover 또는 키보드 포커스에서만 드러냅니다. */
+.area-nav a::after,
+.document-list a::after,
+.step-list a::after,
+.page-navigation .previous-link::before,
+.page-navigation .next-link::after {
+ opacity:0;
+ transition:opacity .16s ease, transform .16s ease;
+}
+.area-nav a::after,
+.document-list a::after,
+.step-list a::after,
+.page-navigation .next-link::after { content:"→"; }
+.page-navigation .previous-link::before { content:"←"; margin-right:6px; }
+.area-nav a::after,
+.document-list a::after,
+.step-list a::after,
+.page-navigation .next-link::after { margin-left:auto; }
+.area-nav a:hover::after,
+.area-nav a:focus-visible::after,
+.document-list a:hover::after,
+.document-list a:focus-visible::after,
+.step-list a:hover::after,
+.step-list a:focus-visible::after,
+.page-navigation .previous-link:hover::before,
+.page-navigation .previous-link:focus-visible::before,
+.page-navigation .next-link:hover::after,
+.page-navigation .next-link:focus-visible::after { opacity:1; }
+.area-nav a:hover::after,
+.document-list a:hover::after,
+.step-list a:hover::after,
+.page-navigation .next-link:hover::after { transform:translateX(3px); }
+.page-navigation .previous-link:hover::before { transform:translateX(-3px); }
+@media(prefers-reduced-motion:reduce) {
+ .area-nav a::after,
+ .document-list a::after,
+ .step-list a::after,
+ .page-navigation .previous-link::before,
+ .page-navigation .next-link::after { transition:none; }
+}
+
+/* 문서의 표·절차를 보조하는 본문 삽화 */
+.supporting-illustration {
+ margin:20px 0 26px;
+ padding:14px 0;
+ border-block:1px solid var(--line);
+ text-align:center;
+}
+.supporting-illustration img {
+ display:block;
+ width:min(100%,760px);
+ max-height:340px;
+ height:auto;
+ margin-inline:auto;
+ object-fit:contain;
+}
+.supporting-illustration figcaption {
+ margin-top:8px;
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.6;
+}
+@media(max-width:720px) {
+ .supporting-illustration { margin-block:16px 20px; padding-block:10px; }
+ .supporting-illustration img { max-height:220px; }
+ .supporting-illustration figcaption { font-size:12px; }
+}
+
 /* 가독성 중심의 타이포그래피와 절제된 서비스 UI 색상 */
 :root {
  --navy:#202b3a;
@@ -394,4 +464,7 @@ body.nav-page-leaving { animation:nav-page-leave 160ms cubic-bezier(.4,0,1,1) bo
  body.nav-page-entering,
  body.nav-page-leaving { animation:none; }
 }
-
+.area-nav { grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media(max-width:720px) {
+ .area-nav { grid-template-columns:1fr; }
+}
