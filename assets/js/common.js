@@ -59,6 +59,94 @@ results.innerHTML = '<p class="search-status" role="status" aria-live="polite" a
 header.append(results);
 header.querySelector('.print-button').addEventListener('click', () => window.print());
 const normalize = value => value.normalize('NFKC').toLocaleLowerCase('ko').replace(/\s+/g, ' ').trim();
+const highlightKey = 'manual-search-highlight';
+const getRanges = (text, terms) => {
+  let normalized = '';
+  const starts = [];
+  const ends = [];
+  for (let offset = 0; offset < text.length;) {
+    const point = String.fromCodePoint(text.codePointAt(offset));
+    const value = point.normalize('NFKC').toLocaleLowerCase('ko');
+    for (let i = 0; i < value.length; i++) {
+      normalized += value[i];
+      starts.push(offset);
+      ends.push(offset + point.length);
+    }
+    offset += point.length;
+  }
+  const ranges = [];
+  for (const term of terms) {
+    let from = 0;
+    while (from < normalized.length && ranges.length < 300) {
+      const index = normalized.indexOf(term, from);
+      if (index < 0) break;
+      ranges.push([starts[index], ends[index + term.length - 1]]);
+      from = index + Math.max(term.length, 1);
+    }
+  }
+  ranges.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const merged = [];
+  for (const range of ranges) {
+    const last = merged[merged.length - 1];
+    if (last && range[0] <= last[1]) last[1] = Math.max(last[1], range[1]);
+    else merged.push(range.slice());
+  }
+  return merged;
+};
+const appendHighlightedText = (container, text, terms) => {
+  const ranges = getRanges(text, terms);
+  let offset = 0;
+  for (const [start, end] of ranges) {
+    container.append(document.createTextNode(text.slice(offset, start)));
+    const mark = document.createElement('mark');
+    mark.className = 'search-highlight';
+    mark.textContent = text.slice(start, end);
+    container.append(mark);
+    offset = end;
+  }
+  container.append(document.createTextNode(text.slice(offset)));
+};
+const applyPageHighlights = query => {
+  const terms = normalize(query).split(' ').filter(Boolean);
+  const main = document.querySelector('main');
+  if (!terms.length || !main) return;
+  const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      return node.nodeValue.trim() && !node.parentElement.closest('script,style,noscript,textarea,input,select,button,mark,[aria-hidden="true"]')
+        ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  let count = 0;
+  for (const node of nodes) {
+    const ranges = getRanges(node.nodeValue, terms);
+    if (!ranges.length) continue;
+    const fragment = document.createDocumentFragment();
+    appendHighlightedText(fragment, node.nodeValue, terms);
+    count += ranges.length;
+    node.parentNode.replaceChild(fragment, node);
+  }
+  if (!count) return;
+  const notice = document.createElement('div');
+  notice.className = 'search-highlight-notice';
+  const label = document.createElement('span');
+  label.textContent = `검색어 “${query}” ${count}곳 강조 중`;
+  const clearButton = document.createElement('button');
+  clearButton.type = 'button';
+  clearButton.className = 'search-highlight-clear';
+  clearButton.textContent = '강조 해제';
+  const clear = () => {
+    main.querySelectorAll('mark.search-highlight').forEach(mark => mark.replaceWith(document.createTextNode(mark.textContent)));
+    notice.remove();
+    document.removeEventListener('keydown', onKeyDown);
+  };
+  const onKeyDown = event => { if (event.key === 'Escape') clear(); };
+  clearButton.addEventListener('click', clear);
+  document.addEventListener('keydown', onKeyDown);
+  notice.append(label, clearButton);
+  main.prepend(notice);
+};
 tools.querySelector('form').addEventListener('submit', event => {
   event.preventDefault();
   const query = tools.querySelector('input').value.trim();
@@ -82,10 +170,20 @@ tools.querySelector('form').addEventListener('submit', event => {
     const lowerText = normalize(item.text);
     const firstMatch = Math.min(...terms.map(term => lowerText.indexOf(term)).filter(position => position >= 0));
     const start = Number.isFinite(firstMatch) ? Math.max(0, firstMatch - 35) : 0;
-    snippet.textContent = (start ? '…' : '') + item.text.slice(start, start + 160) + (item.text.length > start + 160 ? '…' : '');
+    const snippetText = (start ? '…' : '') + item.text.slice(start, start + 160) + (item.text.length > start + 160 ? '…' : '');
+    appendHighlightedText(snippet, snippetText, terms);
+    link.addEventListener('click', event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      try { sessionStorage.setItem(highlightKey, query); } catch (_) {}
+    });
     li.append(link, snippet);
     list.append(li);
   });
 });
+try {
+  const query = sessionStorage.getItem(highlightKey);
+  sessionStorage.removeItem(highlightKey);
+  if (query) applyPageHighlights(query);
+} catch (_) {}
 })();
 
