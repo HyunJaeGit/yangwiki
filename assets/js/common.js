@@ -153,7 +153,7 @@ const searchPages = [{"path":"index.html","title":"홈","text":"상담 참고용
 const header = document.querySelector('#site-header .container');
 const tools = document.createElement('div');
 tools.className = 'page-tools';
-tools.innerHTML = '<form class="site-search" role="search"><label for="site-query">전체 페이지 검색</label><div class="search-controls"><input id="site-query" name="q" type="search" maxlength="200" placeholder="검색어 입력"><button type="submit">검색</button></div></form>';
+tools.innerHTML = '<form class="site-search" role="search"><label class="visually-hidden" for="site-query">전체 페이지 검색</label><div class="search-controls"><input id="site-query" name="q" type="search" maxlength="200" placeholder="검색어 입력"><button type="submit">검색</button></div></form>';
 header.append(tools);
 const results = document.createElement('section');
 results.className = 'search-results';
