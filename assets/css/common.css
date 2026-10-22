@@ -361,11 +361,30 @@ body.patch-notes-open { overflow:hidden; }
 .patch-notes-content h3 { margin:0 0 10px; font-size:16px; }
 .patch-notes-content ul { margin:0; padding-left:20px; }
 .patch-notes-content li { margin-bottom:6px; }
+.patch-notes-heading { flex-shrink:0; }
+.request-content { min-height:0; overflow-y:auto; overscroll-behavior:contain; padding:0 20px 20px; font-size:14px; }
+.request-content label { display:block; margin:14px 0 5px; font-weight:600; }
+.request-content label span { color:var(--muted); font-size:13px; }
+.request-content input,.request-content select,.request-content textarea { width:100%; min-width:0; min-height:44px; padding:9px 10px; border:1px solid var(--line); background:#fff; color:var(--ink); font:inherit; }
+.request-content input[readonly],.request-content textarea[readonly] { background:var(--light); }
+.request-content textarea { display:block; resize:vertical; }
+.request-content input:focus-visible,.request-content select:focus-visible,.request-content textarea:focus-visible { outline:3px solid #276bb0; outline-offset:2px; }
+.request-copy-row { display:flex; gap:8px; }
+.request-copy-row input { flex:1; }
+.request-copy-row button { flex-shrink:0; }
+.request-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+.request-form-link { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:8px 16px; border:1px solid var(--navy); background:var(--navy); color:#fff; text-decoration:none; }
+.request-draft { margin-top:14px; }
+.request-draft summary { min-height:44px; padding-block:10px; cursor:pointer; }
+.request-status { margin:12px 0 0; color:var(--navy); }
 @media(max-width:420px) {
  .header-top { gap:8px; }
  .header-top .brand { min-width:0; }
  .patch-notes-heading { padding:12px 16px; }
  .patch-notes-content { padding-inline:16px; }
+ .request-content { padding-inline:16px; }
+ .request-copy-row { flex-wrap:wrap; }
+ .request-copy-row input { flex-basis:100%; }
 }
 @media print {
  .patch-notes-dialog, .patch-notes-dialog[open], .patch-notes-dialog::backdrop { display:none !important; }
