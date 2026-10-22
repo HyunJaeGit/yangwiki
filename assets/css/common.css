@@ -446,3 +446,26 @@ body.nav-page-leaving { animation:nav-page-leave 160ms cubic-bezier(.4,0,1,1) bo
 @media(max-width:720px) {
  .area-nav { grid-template-columns:1fr; }
 }
+
+/* 기본 업무 뒤에 두는 상황별 보조 안내 */
+.manual-note { color:var(--muted); font-size:14px; margin-top:12px; }
+.section-menu-reference-title { padding:12px 16px 4px; margin:0; font-size:13px; color:var(--muted); border-top:1px solid var(--line); }
+.manual-section.supplementary-section { border-radius:0; background:var(--light); border-inline:0; }
+.supplementary-section > h2 { font-size:19px; }
+.supplement { margin-top:12px; border:1px solid var(--line); background:#fff; scroll-margin-top:24px; }
+.supplement > summary { padding:12px 16px; min-height:44px; cursor:pointer; color:var(--navy); font-size:15px; font-weight:600; }
+.supplement[open] > summary { border-bottom:1px solid var(--line); background:var(--blue); }
+.supplement-body { padding:16px; font-size:14px; }
+.supplement-body > :last-child { margin-bottom:0; }
+.supplement-body .notice { font-size:14px; }
+@media(max-width:720px) {
+ .supplement > summary { padding:12px; }
+ .supplement-body { padding:12px; }
+}
+@media print {
+ .supplementary-section { background:#fff; }
+ .supplement { break-inside:auto; }
+ .supplement > summary { list-style:none; }
+ .supplement::details-content { display:block; content-visibility:visible; }
+ .supplement > .supplement-body { display:block !important; }
+}
