@@ -545,9 +545,8 @@ body[data-group="home"] .content-section {
 body[data-group="home"] .content-section h2 { font-size:clamp(25px,3vw,32px); }
 body[data-group="home"] .document-list { margin-top:22px; }
 body[data-group="home"] .document-list a { min-height:82px; border-radius:4px; }
-body[data-group="home"] #school-process { margin-top:96px; }
 body[data-group="home"] .step-list { counter-reset:home-step; }
-body[data-group="home"] .step-list a { min-height:68px; border-radius:4px; }
+body[data-group="home"] .step-list a { border-radius:4px; }
 body[data-group="home"] .home-columns {
  display:grid;
  grid-template-columns:repeat(2,minmax(0,1fr));
@@ -559,25 +558,42 @@ body[data-group="home"] .home-column { min-width:0; }
 body[data-group="home"] .home-column h2 { margin:0; font-size:inherit; }
 body[data-group="home"] .home-area-banner {
  display:flex;
- min-height:72px;
+ min-height:88px;
  align-items:center;
  justify-content:space-between;
- gap:12px;
- padding:16px 18px;
- border:1px solid var(--line);
- border-left:4px solid var(--navy);
- background:var(--light);
+ gap:18px;
+ padding:15px 18px;
+ border:1px solid #d9dfe5;
+ border-left:5px solid var(--kakao);
+ background:#fbfbf8;
  color:var(--navy);
- font-size:18px;
+ font-size:19px;
+ font-weight:700;
  text-decoration:none;
 }
-body[data-group="home"] .home-area-banner span { color:var(--muted); font-size:20px; }
+body[data-group="home"] .home-banner-copy { display:grid; gap:2px; }
+body[data-group="home"] .home-banner-copy strong { font-size:19px; line-height:1.4; }
+body[data-group="home"] .home-banner-copy small { color:var(--muted); font-size:13px; font-weight:400; line-height:1.5; }
+body[data-group="home"] .home-area-banner .home-banner-arrow {
+ display:grid;
+ flex:0 0 36px;
+ width:36px;
+ height:36px;
+ place-items:center;
+ border:1px solid #e4d76a;
+ border-radius:50%;
+ background:#fffdf0;
+ color:var(--navy);
+ font-size:19px;
+ font-weight:500;
+}
 body[data-group="home"] .home-column .document-list,
 body[data-group="home"] .home-column .step-list { margin-top:14px; }
 body[data-group="home"] .home-column .document-list { display:block; }
-body[data-group="home"] .home-column .document-list a { min-height:58px; padding:12px 14px; }
+body[data-group="home"] .home-column .document-list li { margin-top:6px; }
+body[data-group="home"] .home-column .document-list a { min-height:56px; padding:8px 12px; border-radius:4px; }
 body[data-group="home"] .home-column .step-list li { margin-top:6px; }
-body[data-group="home"] .home-column .step-list a { min-height:54px; padding:8px 12px; }
+body[data-group="home"] .home-column .step-list a { min-height:56px; padding:8px 12px; border-radius:4px; }
 @media(max-width:720px) {
  body[data-group="home"] main { padding-top:16px; }
  body[data-group="home"] .home-hero { padding:14px 0 18px; }
@@ -586,13 +602,20 @@ body[data-group="home"] .home-column .step-list a { min-height:54px; padding:8px
  body[data-group="home"] .area-nav a { min-height:62px; padding:12px 14px; }
  body[data-group="home"] .area-nav a span:first-child { font-size:16px; }
  body[data-group="home"] .content-section { margin-top:54px; padding-top:20px; }
- body[data-group="home"] #school-process { margin-top:68px; }
- body[data-group="home"] .document-list a { min-height:64px; }
+ body[data-group="home"] .document-list a { min-height:56px; }
  body[data-group="home"] .home-columns { grid-template-columns:1fr; gap:44px; margin-top:18px; }
- body[data-group="home"] .home-area-banner { min-height:64px; padding:13px 14px; font-size:16px; }
+ body[data-group="home"] .home-area-banner { min-height:76px; padding:12px 14px; font-size:16px; }
+ body[data-group="home"] .home-banner-copy strong { font-size:17px; }
+ body[data-group="home"] .home-banner-copy small { font-size:12px; }
+ body[data-group="home"] .home-area-banner .home-banner-arrow { flex-basis:32px; width:32px; height:32px; }
  body[data-group="home"] .home-column .document-list,
  body[data-group="home"] .home-column .step-list { margin-top:10px; }
 }
+@media (hover:hover) and (pointer:fine) {
+ body[data-group="home"] .home-area-banner:hover { border-color:#c9d1d9; border-left-color:#dfcc00; background:#fffef7; text-decoration:none; }
+ body[data-group="home"] .home-area-banner:hover .home-banner-arrow { background:#fff9d4; }
+}
+body[data-group="home"] .home-area-banner:focus-visible { outline:3px solid #276bb0; outline-offset:3px; }
 
 /* 기본 업무 뒤에 두는 상황별 보조 안내 */
 .manual-note { color:var(--muted); font-size:14px; margin-top:12px; }
