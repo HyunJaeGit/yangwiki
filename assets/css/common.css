@@ -509,6 +509,91 @@ body.nav-page-leaving { animation:nav-page-leave 160ms cubic-bezier(.4,0,1,1) bo
  .area-nav { grid-template-columns:1fr; }
 }
 
+/* Home landing layout */
+body[data-group="home"] main { padding-top:24px; }
+body[data-group="home"] .home-hero {
+ margin:0;
+ padding:18px 0 24px;
+ border-bottom:1px solid var(--line);
+}
+body[data-group="home"] .home-hero h1 {
+ margin:0;
+ color:var(--navy);
+ font-size:clamp(30px,4vw,40px);
+ line-height:1.35;
+ letter-spacing:-.045em;
+}
+body[data-group="home"] .area-nav { margin:26px 0 0; }
+body[data-group="home"] .area-nav a {
+ min-height:72px;
+ align-items:center;
+ padding:16px 20px;
+ border-left:3px solid var(--navy);
+ border-radius:2px;
+ background:var(--light);
+}
+body[data-group="home"] .area-nav a span:first-child { font-size:17px; }
+body[data-group="home"] .area-nav a span:last-child { color:var(--muted); font-size:20px; }
+body[data-group="home"] .content-section {
+ margin-top:76px;
+ padding:24px 0 0;
+ border:0;
+ border-top:2px solid var(--navy);
+ border-radius:0;
+ background:transparent;
+}
+body[data-group="home"] .content-section h2 { font-size:clamp(25px,3vw,32px); }
+body[data-group="home"] .document-list { margin-top:22px; }
+body[data-group="home"] .document-list a { min-height:82px; border-radius:4px; }
+body[data-group="home"] #school-process { margin-top:96px; }
+body[data-group="home"] .step-list { counter-reset:home-step; }
+body[data-group="home"] .step-list a { min-height:68px; border-radius:4px; }
+body[data-group="home"] .home-columns {
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:clamp(24px,4vw,52px);
+ margin-top:26px;
+ align-items:start;
+}
+body[data-group="home"] .home-column { min-width:0; }
+body[data-group="home"] .home-column h2 { margin:0; font-size:inherit; }
+body[data-group="home"] .home-area-banner {
+ display:flex;
+ min-height:72px;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ padding:16px 18px;
+ border:1px solid var(--line);
+ border-left:4px solid var(--navy);
+ background:var(--light);
+ color:var(--navy);
+ font-size:18px;
+ text-decoration:none;
+}
+body[data-group="home"] .home-area-banner span { color:var(--muted); font-size:20px; }
+body[data-group="home"] .home-column .document-list,
+body[data-group="home"] .home-column .step-list { margin-top:14px; }
+body[data-group="home"] .home-column .document-list { display:block; }
+body[data-group="home"] .home-column .document-list a { min-height:58px; padding:12px 14px; }
+body[data-group="home"] .home-column .step-list li { margin-top:6px; }
+body[data-group="home"] .home-column .step-list a { min-height:54px; padding:8px 12px; }
+@media(max-width:720px) {
+ body[data-group="home"] main { padding-top:16px; }
+ body[data-group="home"] .home-hero { padding:14px 0 18px; }
+ body[data-group="home"] .home-hero h1 { font-size:clamp(28px,8vw,34px); }
+ body[data-group="home"] .area-nav { margin-top:18px; }
+ body[data-group="home"] .area-nav a { min-height:62px; padding:12px 14px; }
+ body[data-group="home"] .area-nav a span:first-child { font-size:16px; }
+ body[data-group="home"] .content-section { margin-top:54px; padding-top:20px; }
+ body[data-group="home"] #school-process { margin-top:68px; }
+ body[data-group="home"] .document-list a { min-height:64px; }
+ body[data-group="home"] .home-columns { grid-template-columns:1fr; gap:44px; margin-top:18px; }
+ body[data-group="home"] .home-area-banner { min-height:64px; padding:13px 14px; font-size:16px; }
+ body[data-group="home"] .home-column .document-list,
+ body[data-group="home"] .home-column .step-list { margin-top:10px; }
+}
+
 /* 기본 업무 뒤에 두는 상황별 보조 안내 */
 .manual-note { color:var(--muted); font-size:14px; margin-top:12px; }
 .section-menu-reference-title { padding:12px 16px 4px; margin:0; font-size:13px; color:var(--muted); border-top:1px solid var(--line); }
