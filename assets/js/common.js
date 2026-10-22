@@ -11,6 +11,73 @@ document.head.append(icon);
 const sections = {"business":{"label":"양품화 사업 안내","pages":[["overview","사업 개요·전체 흐름"],["collection","수거 대상·품목 기준"],["inspection","현장 점검·판정"],["distribution","양품화·관리전환·배부"]],"references":[["pencil","펜슬 취급·제공 안내"]]},"school":{"label":"학교 측 업무 프로세스","pages":[["preparation","수거 전 준비"],["os-preparation","OS별 준비"],["schedule","일정 확인·변경"],["collection-day","수거 당일 대응"],["receipt","수거확인서"],["transfer","명렬표·관리전환"],["installation","배부·설치 확인"]]},"relocation":{"label":"디벗 재배치·여분 기기","pages":[["index","재배치·여분 기기 회수"]]}};
 const current = key => group === key ? ' aria-current="true"' : '';
 document.getElementById('site-header').innerHTML = `<div class="container"><div class="header-top"><a class="brand" href="${root}index.html">디벗 양품화 <span>메뉴얼</span></a><button type="button" class="print-button" aria-label="현재 페이지 인쇄" title="현재 페이지 인쇄"><svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z"/></svg></button></div><nav class="main-nav" aria-label="주 메뉴"><a href="${root}index.html"${group === 'home' ? ' aria-current="page"' : ''}>홈</a><a href="${root}pages/business/index.html"${current('business')}>양품화 사업 안내</a><a href="${root}pages/school/index.html"${current('school')}>학교 측 업무 프로세스</a><a href="${root}pages/contact.html"${current('contact')}>문의 경로</a><a class="nav-secondary" href="${root}pages/relocation/index.html"${current('relocation')}>디벗 재배치·여분 기기</a></nav></div>`;
+// 루트 패치내역.md 변경 시 아래 날짜별 목록도 함께 갱신합니다.
+const patchNotes = [{"title":"2026-10-22","items":["수거 일정 변경·승인 후 조정 및 수거 3일 전 기사 연락 안내 추가.","학생 과실 파손·분실 본인부담 기준 추가.","양품화 시스템과 TGS·KT 보급사업 사이트 구분 안내 추가.","삼성 크롬북 하단 고무 루버·키보드 부품 서비스 안내 추가.","펜슬 상세 페이지 신설: OS별 제공 기준·배터리 교환·양품화 전후 제공 제품 정리.","일반 절차 우선 배치, 예외·한시사업은 접기 안내로 분리.","목차·검색·상세 링크·인쇄 동작 갱신, 최종 배포일 수정.","인쇄 버튼 옆 메뉴에 날짜별 패치노트 모달 추가."]},{"title":"2026-10-21 · 최초 구축","items":["프로젝트 첫 커밋 : 정적 매뉴얼 사이트 구축 및 배포.","양품화 사업 안내·학교 업무 7단계·재배치·문의 페이지 구성.","제공 자료 기반 수거·준비·관리전환·배부 절차 정리.","공통 메뉴·모바일 화면·검색 및 검색어 강조·인쇄 기능 적용.","GitHub Pages 배포 설정 및 공통 푸터 정보 추가."]}];
+const headerTop = document.querySelector('.header-top');
+const headerActions = document.createElement('div');
+headerActions.className = 'header-actions';
+headerActions.append(headerTop.querySelector('.print-button'));
+const headerMenu = document.createElement('div');
+headerMenu.className = 'header-menu';
+headerMenu.innerHTML = '<button type="button" class="header-menu-button" aria-label="메뉴" aria-expanded="false" aria-controls="header-menu-panel" title="메뉴"><svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div id="header-menu-panel" class="header-menu-panel" hidden><button type="button" class="patch-notes-trigger" aria-haspopup="dialog" aria-controls="patch-notes-dialog">패치노트</button></div>';
+headerActions.append(headerMenu);
+headerTop.append(headerActions);
+const menuButton = headerMenu.querySelector('.header-menu-button');
+const menuPanel = headerMenu.querySelector('.header-menu-panel');
+const setMenuOpen = open => {
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuPanel.hidden = !open;
+};
+menuButton.addEventListener('click', () => setMenuOpen(menuPanel.hidden));
+document.addEventListener('pointerdown', event => {
+  if (!headerMenu.contains(event.target)) setMenuOpen(false);
+});
+document.addEventListener('focusin', event => {
+  if (!headerMenu.contains(event.target)) setMenuOpen(false);
+});
+headerMenu.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && !menuPanel.hidden) {
+    event.preventDefault();
+    event.stopPropagation();
+    setMenuOpen(false);
+    menuButton.focus();
+  }
+});
+const patchDialog = document.createElement('dialog');
+patchDialog.id = 'patch-notes-dialog';
+patchDialog.className = 'patch-notes-dialog';
+patchDialog.setAttribute('aria-labelledby', 'patch-notes-title');
+patchDialog.innerHTML = '<div class="patch-notes-heading"><h2 id="patch-notes-title">패치노트</h2><button type="button" class="patch-notes-close" aria-label="패치노트 닫기" autofocus>닫기</button></div><div class="patch-notes-content"></div>';
+const patchContent = patchDialog.querySelector('.patch-notes-content');
+patchNotes.forEach(note => {
+  const section = document.createElement('section');
+  const title = document.createElement('h3');
+  title.textContent = note.title;
+  const list = document.createElement('ul');
+  note.items.forEach(text => {
+    const item = document.createElement('li');
+    item.textContent = text;
+    list.append(item);
+  });
+  section.append(title, list);
+  patchContent.append(section);
+});
+document.body.append(patchDialog);
+headerMenu.querySelector('.patch-notes-trigger').addEventListener('click', () => {
+  setMenuOpen(false);
+  patchDialog.showModal();
+  patchContent.scrollTop = 0;
+  document.body.classList.add('patch-notes-open');
+});
+patchDialog.querySelector('.patch-notes-close').addEventListener('click', () => patchDialog.close());
+patchDialog.addEventListener('click', event => {
+  const bounds = patchDialog.getBoundingClientRect();
+  if (event.target === patchDialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) patchDialog.close();
+});
+patchDialog.addEventListener('close', () => {
+  document.body.classList.remove('patch-notes-open');
+  menuButton.focus();
+});
 const transitionKey = 'nav-page-transition';
 try {
   const pendingTransition = JSON.parse(sessionStorage.getItem(transitionKey) || 'null');
