@@ -25,6 +25,9 @@
 | 이메일 제출 후 명렬표 수정·재발송 | 명렬표를 이메일로 이미 보냈다면 변경된 수량에 맞춰 수정한 뒤 다시 이메일로 발송. | 사용자 제공·확인, 2026-10-23. 상담 스크립트(docx)·연수자료(pptx)에서 재발송 절차 근거 미확인. PDF·HWP는 이번 대조에서 확인하지 못함. | 이메일로 명렬표를 이미 제출한 뒤 수량이 변경되는 경우. [명렬표·관리전환](pages/school/transfer.html#quantity-change), [문의 경로](pages/contact.html#device-quantity-change) |
 | 시기별 명렬표 구분 | 수거 시기의 양품화 대상 수량 명렬표와 2월 신입생 수 확정 후 준비하는 명렬표는 서로 다른 자료. 앞서 제공한 수량 변경·이메일 재발송 안내는 수거 시기 명렬표에 적용. | 사용자 제공·확인, 2026-10-23. 기존 자료의 명렬표 용도·시기 혼동을 사용자 설명으로 구분. | [수거 전 준비](pages/school/preparation.html#quantity-change), [명렬표·관리전환](pages/school/transfer.html#roster-types), [문의 경로](pages/contact.html#device-quantity-change) |
 | 1학기 제출 동의서 활용 예외 | 원칙적으로 수리동의서를 받아 진행. 다만 1학기에 수리동의서와 개인정보동의서를 모두 제출한 것이 있으면, 수리동의서를 다시 받아 제출하지 않고 해당 기기를 양품화 수거일에 함께 회수하도록 할 수 있음. | 사용자 별도 제공·확인, 2026-10-26. 연수자료 PPTX 9·39·66쪽 및 상담스크립트 DOCX에는 수리동의 기본 절차가 있으나 이 예외는 확인되지 않음. PDF·HWP 내용은 이번 대조에서 확인하지 못함. | 두 동의서의 기존 제출 여부가 확인되는 경우에만 적용하는 예외. [수거 전 준비](pages/school/preparation.html#existing-repair-consent), [수거 당일 대응](pages/school/collection-day.html) |
+| 1학기 수리동의서 제출 학생의 양품화 수거 시 수리 | 1학기에 수리동의서를 제출한 학생의 기기는 양품화 수거 때 바로 수리를 맡긴 뒤 양품화할 수 있음. 1학기에 이미 수리를 받은 경우를 포함해 비용이 발생할 수 있으므로, 학부모에게 비용 발생 가능성을 충분히 알리고 인지 여부를 확인하도록 안내. | 사용자 별도 제공, 2026-10-27. 참고자료 근거 미확인. | 양품화 수거 때 수리를 함께 진행하려는 경우. [수거 전 준비](pages/school/preparation.html#existing-repair-consent), [수거 당일 대응](pages/school/collection-day.html#repair-in-progress) |
+| 교사용 디벗 양품화 대상 문의 | 교사용 디벗 기기는 이번 양품화 대상이 아님. 문의가 있으면 서울시교육청 창의미래교육과로 문의하도록 안내. | 사용자 별도 제공, 2026-10-27. 참고자료 근거 미확인. | 교사용 디벗의 양품화 대상 여부 문의. [수거 대상·품목 기준](pages/business/collection.html#teacher-device), [문의 경로](pages/contact.html) |
+| 무인보관함을 이용한 수리 신청 | 디벗 기기를 무인보관함에 넣고 QR코드로 수리를 신청하면 기사가 방문해 기기를 가져감. | 사용자 별도 제공, 2026-10-27. 참고자료 근거 미확인. | 일반 유지보수 수리 신청·무인보관함 이용. [수리·비용](pages/maintenance/repair.html#locker-repair) |
 
 ### 2026-10-23 적용 범위 정정
 
