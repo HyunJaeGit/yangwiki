@@ -371,7 +371,8 @@ button:active { transform:translateY(1px); }
 .header-menu-button svg { width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; }
 .header-menu-panel { position:absolute; right:0; top:calc(100% + 6px); min-width:160px; padding:4px; background:#fff; border:1px solid var(--line); z-index:20; }
 .header-menu-panel[hidden] { display:none; }
-.header-menu-panel button { width:100%; text-align:left; background:#fff; border:0; }
+.header-menu-panel button,.header-menu-panel a { display:block; width:100%; min-height:40px; padding:10px 12px; color:var(--ink); text-align:left; text-decoration:none; background:#fff; border:0; }
+.header-menu-panel button:hover,.header-menu-panel a:hover,.header-menu-panel button:focus-visible,.header-menu-panel a:focus-visible { background:var(--light); }
 body.patch-notes-open { overflow:hidden; }
 .patch-notes-dialog { width:min(640px,calc(100% - 32px)); max-height:calc(100dvh - 48px); padding:0; color:var(--ink); background:#fff; border:1px solid var(--line); }
 .patch-notes-dialog[open] { display:flex; flex-direction:column; }
