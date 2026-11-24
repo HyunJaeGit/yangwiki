@@ -157,12 +157,17 @@ button:focus-visible,input:focus-visible,summary:focus-visible { outline:3px sol
 .main-nav a { padding:10px 0 8px; }
 .main-nav a[aria-current] { color:var(--navy); }
 .nav-other { position:relative; margin-left:auto; }
+.nav-mdm { position:relative; }
+.nav-mdm > summary { padding:10px 0 8px; border-bottom:3px solid transparent; color:var(--muted); cursor:pointer; list-style:none; }
+.nav-mdm > summary::-webkit-details-marker { display:none; }
+.nav-mdm.is-current > summary { color:var(--navy); border-bottom-color:var(--navy); font-weight:700; }
+.nav-mdm > summary:focus-visible { outline:3px solid #276bb0; outline-offset:4px; }
 .nav-other > summary { padding:10px 0 8px; border-bottom:3px solid transparent; color:var(--muted); cursor:pointer; list-style:none; }
 .nav-other > summary::-webkit-details-marker { display:none; }
 .nav-other.is-current > summary { color:var(--navy); border-bottom-color:var(--navy); font-weight:700; }
 .nav-other > summary:focus-visible { outline:3px solid #276bb0; outline-offset:4px; }
 .nav-other-panel { position:absolute; right:0; top:100%; width:290px; max-width:calc(100vw - 48px); padding:8px 16px; border:1px solid var(--line); background:#fff; z-index:20; }
-.nav-other:not([open]) > .nav-other-panel { display:none; }
+.nav-other:not([open]) > .nav-other-panel, .nav-mdm:not([open]) > .nav-other-panel { display:none; }
 .main-nav .nav-other-panel a { display:block; padding:8px 0; border-bottom:3px solid transparent; }
 .main-nav .nav-other-panel a[aria-current] { text-decoration:none; border-bottom-color:var(--kakao); }
 .nav-other-panel > a { font-weight:700; }
